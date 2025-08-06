@@ -1,3 +1,5 @@
+```mermaid
+
 SequenceDiagram
     participant browser
     participant server
@@ -11,18 +13,19 @@ SequenceDiagram
 
     Note right of browser: the browser restarts to the notes page
 
-    Browser ->> server HTTP get https://studies.cs.helsinki.fi/exampleapp/main.css
+    browser ->> server HTTP get https://studies.cs.helsinki.fi/exampleapp/main.css
     activate server
     server ->> browser the style sheet
     deactivate server
 
-    Browser ->> server HTTP get https://studies.cs.helsinki.fi/exampleapp/main.js
+    browser ->> server HTTP get https://studies.cs.helsinki.fi/exampleapp/main.js
     activate server
     server ->> browser the JavaScript code
     deactivate server
 
-    Browser ->> server HTTP get https://studies.cs.helsinki.fi/exampleapp/data.json
+    browser ->> server HTTP get https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
     server ->> browser raw data of the notes with new data from user
     deactivate server
+
 
