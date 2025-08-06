@@ -1,6 +1,6 @@
 ```mermaid
 
-SequenceDiagram
+sequenceDiagram
     participant browser
     participant server
     
@@ -27,5 +27,6 @@ SequenceDiagram
     activate server
     server ->> browser raw data of the notes with new data from user
     deactivate server
+
 
 
