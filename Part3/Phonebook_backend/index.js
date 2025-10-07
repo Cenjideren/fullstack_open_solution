@@ -2,7 +2,14 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan');
 const cors = require('cors'); 
+const path = require('path');
+
 app.use(cors());
+app.use(express.static('dist'))
+app.use(express.json())
+morgan.token('body', (req) => JSON.stringify(req.body));
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
+
 
 let notes = [
     { 
@@ -26,14 +33,6 @@ let notes = [
       "number": "39-23-6423122"
     }
 ]
-app.use(express.json())
-morgan.token('body', (req) => JSON.stringify(req.body));
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
-
-
-app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>')
-})
 
 app.get('/api/persons', (request, response) => {
   response.json(notes)
@@ -84,6 +83,8 @@ app.post('/api/persons', (request, response) => {
       error: 'name and number are required' 
     })
   }
+
+
 
   const nameExsits= notes.some(note => note.name === body.name)
   if (nameExsits) {
